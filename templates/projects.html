@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="projects-section">
+    <h1 class="page-title fade-in">Project Categories</h1>
+    <p class="section-subtitle fade-in" style="text-align: center; margin-top: -1.5rem; margin-bottom: 3rem; color: var(--text-muted);">
+        Explore the different projects covered during the Flask Course.
+    </p>
+    
+    <div class="projects-grid">
+        
+        <div class="project-card slide-up">
+            <div>
+                <div class="project-icon-wrapper">
+                    <span class="project-icon">🚀</span>
+                </div>
+                <h2>Minor Project 1</h2>
+                <p>Build your first Flask application with templates, routing, forms, database connectivity and CRUD operations.</p>
+            </div>
+            <a href="#" class="btn primary-btn card-action-btn">View Details</a>
+        </div>
+
+        <div class="project-card slide-up" style="animation-delay: 0.1s;">
+            <div>
+                <div class="project-icon-wrapper">
+                    <span class="project-icon">💻</span>
+                </div>
+                <h2>Minor Project 2</h2>
+                <p>Create an advanced management system using Flask, authentication, sessions and MySQL integration.</p>
+            </div>
+            <a href="#" class="btn primary-btn card-action-btn">View Details</a>
+        </div>
+
+        <div class="project-card slide-up" style="animation-delay: 0.2s;">
+            <div>
+                <div class="project-icon-wrapper">
+                    <span class="project-icon">🏆</span>
+                </div>
+                <h2>Major Project</h2>
+                <p>Develop a complete industry-level project with authentication, dashboard, reports and deployment.</p>
+            </div>
+            <a href="#" class="btn primary-btn card-action-btn">View Details</a>
+        </div>
+
+        <div class="project-card slide-up" style="animation-delay: 0.3s;">
+            <div>
+                <div class="project-icon-wrapper">
+                    <span class="project-icon">🌐</span>
+                </div>
+                <h2>Web Scraping</h2>
+                <p>Learn BeautifulSoup, Requests and Selenium to scrape websites and automate data collection.</p>
+            </div>
+            <a href="/scraping" class="btn primary-btn card-action-btn">View Details</a>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

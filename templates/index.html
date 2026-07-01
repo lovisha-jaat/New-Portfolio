@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero-section">
+    <div class="hero-text fade-in">
+        <h1>Hi, I'm <span class="highlight">Lovisha Jaat</span></h1>
+        <h2>Computer Science Student & AI/ML Enthusiast</h2>
+        <p>B.Tech CSE student at JMIETI. Passionate about DSA, web scraping, and building intelligent software solutions.
+        </p>
+        <div class="cta-buttons">
+            <a href="/projects" class="btn primary-btn">View My Work</a>
+            <a href="https://github.com/lovisha-jaat" target="_blank" class="btn secondary-btn">Visit GitHub</a>
+        </div>
+    </div>
+    <div class="hero-image-container fade-in">
+        <div class="profile-image-frame">
+            <img src="{{ url_for('static', filename='images/profile.jpeg') }}" alt="Lovisha Jaat" class="profile-img">
+        </div>
+    </div>
+</section>
+
+<section class="skills-section fade-in">
+    <h2 class="section-title">Technical Expertise</h2>
+    <div class="skills-grid">
+        <div class="skill-card">
+            <h3>Languages</h3>
+            <p>C++, Python, Java, SQL, JavaScript (Basics), HTML/CSS.</p>
+        </div>
+        <div class="skill-card">
+            <h3>Core CS & AI</h3>
+            <p>DSA, OOPs, Machine Learning Fundamentals, Web Scraping, Data Manipulation.</p>
+        </div>
+        <div class="skill-card">
+            <h3>Libraries & Tools</h3>
+            <p>ReactJS, Pandas, Requests, Beautiful Soup, Git, GitHub, Docker (Basics).</p>
+        </div>
+    </div>
+</section>
+
+<!-- New Integrated Contact Section -->
+<section class="contact-section fade-in">
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="contact-subtitle">Let's connect! Feel free to reach out for collaborations or opportunities.</p>
+    <div class="contact-container">
+        <div class="contact-info-card">
+            <div class="info-item">
+                <span class="info-label">Email:</span>
+                <a href="mailto:lovishajaat02@gmail.com" class="contact-link">lovishajaat02@gmail.com</a>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Phone:</span>
+                <span class="contact-text">+91-9813960734</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">LinkedIn:</span>
+                <a href="https://linkedin.com/in/lovisha-jaat" target="_blank" class="contact-link">lovisha-jaat</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

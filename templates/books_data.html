@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="data-table-section fade-in">
+    <h1 class="page-title">Books To Scrape</h1>
+    
+    <div class="table-container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Book Title</th>
+                    <th>Price</th>
+                    <th>Rating</th>
+                    <th>Availability</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td class="book-id">{{ book.id }}</td>
+                    <td class="book-title">{{ book.title }}</td>
+                    <td class="book-price">{{ book.price }}</td>
+                    <td>
+                        <span class="rating-badge star-{{ book.rating | lower }}">
+                            {{ book.rating }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="stock-badge">In Stock</span>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="static-scraping-section">
+    <h1 class="page-title fade-in">Static Website Scraping</h1>
+    <p class="section-subtitle fade-in" style="text-align: center; margin-top: -1.5rem; margin-bottom: 4rem; color: var(--text-muted);">
+        Websites scraped using Requests + BeautifulSoup.
+    </p>
+
+    <div class="projects-grid">
+        
+        <div class="project-card slide-up">
+            <div>
+                <div class="project-icon-wrapper static-icon">
+                    <span class="project-icon">📚</span>
+                </div>
+                <h2>Books To Scrape</h2>
+                <p>Practice website for scraping books.</p>
+            </div>
+           <a href="/scraping/static/books" class="btn primary-btn card-action-btn horizontal-pill">View Project</a>
+        </div>
+
+        <div class="project-card slide-up" style="animation-delay: 0.1s;">
+            <div>
+                <div class="project-icon-wrapper static-icon">
+                    <span class="project-icon">🛒</span>
+                </div>
+                <h2>Amazon</h2>
+                <p>Product price and rating extraction.</p>
+            </div>
+            <a href="#" class="btn primary-btn card-action-btn horizontal-pill">View Project</a>
+        </div>
+
+        <div class="project-card slide-up" style="animation-delay: 0.2s;">
+            <div>
+                <div class="project-icon-wrapper static-icon">
+                    <span class="project-icon">🎬</span>
+                </div>
+                <h2>IMDb</h2>
+                <p>Top movies and ratings scraping.</p>
+            </div>
+            <a href="#" class="btn primary-btn card-action-btn horizontal-pill">View Project</a>
+        </div>
+
+        <div class="project-card slide-up" style="animation-delay: 0.3s;">
+            <div>
+                <div class="project-icon-wrapper static-icon">
+                    <span class="project-icon">📰</span>
+                </div>
+                <h2>BBC News</h2>
+                <p>Extract latest news headlines.</p>
+            </div>
+            <a href="#" class="btn primary-btn card-action-btn horizontal-pill">View Project</a>
+        </div>
+
+    </div>
+</section>
+{% endblock %}
