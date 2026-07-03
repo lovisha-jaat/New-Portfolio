@@ -346,6 +346,145 @@ def books_to_scrape():
         })
     return render_template('books_data.html', books=scraped_books)
 
+# 1. Base Loader Route
+@app.route('/scraping/api')
+def api_scraping():
+    return render_template('api_scraping.html')
+
+
+# ==========================================
+# LIVE API DATA GATHERING CONTROLLER ENGINES
+# ==========================================
+
+def get_universities_data():
+    url = "https://gyansetu.codroidhub.com/api/universities"
+    try:
+        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+        response = requests.get(url, headers=headers, timeout=10)
+        if response.status_code == 200:
+            json_data = response.json()
+            if isinstance(json_data, list) and len(json_data) > 0:
+                data = []
+                for item in json_data[:25]:
+                    data.append({
+                        "University Name": item.get("name", "N/A"),
+                        "Country": item.get("country", "India"),
+                        "Domain": item.get("domain", "N/A") or ", ".join(item.get("domains", []))
+                    })
+                return data
+    except Exception as e:
+        print(f"Live API Fetch Error (Universities): {e}")
+    
+    # EXPANDED FALLBACK DATASET: Ensures a clean 12-item catalog display 
+    # whenever the custom endpoint is unavailable or returns an empty payload
+    return [
+        {"University Name": "Indian Institute of Technology Delhi", "Country": "India", "Domain": "iitd.ac.in"},
+        {"University Name": "Indian Institute of Science", "Country": "India", "Domain": "iisc.ac.in"},
+        {"University Name": "University of Delhi", "Country": "India", "Domain": "du.ac.in"},
+        {"University Name": "IIT Bombay", "Country": "India", "Domain": "iitb.ac.in"},
+        {"University Name": "Jawaharlal Nehru University", "Country": "India", "Domain": "jnu.ac.in"},
+        {"University Name": "BITS Pilani", "Country": "India", "Domain": "bits-pilani.ac.in"},
+        {"University Name": "Anna University", "Country": "India", "Domain": "annauniv.edu"},
+        {"University Name": "University of Mumbai", "Country": "India", "Domain": "mu.ac.in"},
+        {"University Name": "IIT Madras", "Country": "India", "Domain": "iitm.ac.in"},
+        {"University Name": "IIT Kharagpur", "Country": "India", "Domain": "iitkgp.ac.in"},
+        {"University Name": "Banaras Hindu University", "Country": "India", "Domain": "bhu.ac.in"},
+        {"University Name": "Vellore Institute of Technology", "Country": "India", "Domain": "vit.ac.in"}
+    ]
+
+def get_fakestore_data():
+    # Scraping live e-commerce catalogs from FakeStoreAPI
+    url = "https://fakestoreapi.com/products"
+    try:
+        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+        response = requests.get(url, headers=headers, timeout=10)
+        if response.status_code == 200:
+            json_data = response.json()
+            data = []
+            for item in json_data[:25]:
+                data.append({
+                    "Product ID": item.get("id"),
+                    "Title": item.get("title"),
+                    "Price": f"${item.get('price')}",
+                    "Category": item.get("category"),
+                    "Rating": f"{item.get('rating', {}).get('rate', 0)} ({item.get('rating', {}).get('count', 0)} reviews)"
+                })
+            return data
+    except Exception as e:
+        print(f"Live API Fetch Error (FakeStore): {e}")
+    return [{"Product ID": "1", "Title": "Fjallraven Backpack", "Price": "$109.95", "Category": "men's clothing", "Rating": "3.9 (120 reviews)"}]
+
+
+def get_placeholder_data():
+    # Scraping live interactive post boards from JSON Placeholder
+    url = "https://jsonplaceholder.typicode.com/posts"
+    try:
+        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+        response = requests.get(url, headers=headers, timeout=10)
+        if response.status_code == 200:
+            json_data = response.json()
+            data = []
+            for item in json_data[:25]:
+                data.append({
+                    "User ID": item.get("userId"),
+                    "Post ID": item.get("id"),
+                    "Title": item.get("title"),
+                    "Body Content": item.get("body").replace('\n', ' ') # Flatten paragraphs for clean table grids
+                })
+            return data
+    except Exception as e:
+        print(f"Live API Fetch Error (Placeholder): {e}")
+    return [{"User ID": "1", "Post ID": "1", "Title": "delectus aut autem", "Body Content": "Sample post context structural matrix"}]
+
+
+def get_dummyjson_data():
+    # Scraping complex nested product inventories from DummyJSON
+    url = "https://dummyjson.com/products"
+    try:
+        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+        response = requests.get(url, headers=headers, timeout=10)
+        if response.status_code == 200:
+            json_data = response.json()
+            # DummyJSON packs its main output payload list inside a dictionary key named "products"
+            products_list = json_data.get("products", [])
+            data = []
+            for item in products_list[:25]:
+                data.append({
+                    "Item": item.get("title"),
+                    "Price": f"${item.get('price')}",
+                    "Stock Status": item.get("stock"),
+                    "Brand": item.get("brand", "Generic"),
+                    "Category": item.get("category")
+                })
+            return data
+    except Exception as e:
+        print(f"Live API Fetch Error (DummyJSON): {e}")
+    return [{"Item": "Essence Mascara Lash Princess", "Price": "$9.99", "Stock Status": "5", "Brand": "Essence", "Category": "beauty"}]
+
+
+# ==========================================
+# INTERACTIVE GRID VIEW ROUTE ENDPOINTS
+# ==========================================
+
+@app.route('/scraping/api/universities/csv')
+def view_universities_csv():
+    df = pd.DataFrame(get_universities_data())
+    return render_template('view_csv.html', table_html=df.to_html(classes='csv-data-table', index=False), title='Codroid Hub Universities Catalog', download_key='api_uni')
+
+@app.route('/scraping/api/fakestore/csv')
+def view_fakestore_csv():
+    df = pd.DataFrame(get_fakestore_data())
+    return render_template('view_csv.html', table_html=df.to_html(classes='csv-data-table', index=False), title='FakeStore E-Commerce Dataset', download_key='api_fake')
+
+@app.route('/scraping/api/placeholder/csv')
+def view_placeholder_csv():
+    df = pd.DataFrame(get_placeholder_data())
+    return render_template('view_csv.html', table_html=df.to_html(classes='csv-data-table', index=False), title='JSON Placeholder Database', download_key='api_place')
+
+@app.route('/scraping/api/dummyjson/csv')
+def view_dummyjson_csv():
+    df = pd.DataFrame(get_dummyjson_data())
+    return render_template('view_csv.html', table_html=df.to_html(classes='csv-data-table', index=False), title='DummyJSON Nested Store Grid', download_key='api_dummy')
 
 if __name__ == '__main__':
     app.run(debug=True)
