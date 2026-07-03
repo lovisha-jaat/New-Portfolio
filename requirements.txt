@@ -1,0 +1,8 @@
+gunicorn
+selenium
+beautifulsoup4
+pandas
+webdriver-manager
+requests
+Flask
+numpy
