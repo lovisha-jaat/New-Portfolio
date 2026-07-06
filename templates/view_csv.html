@@ -9,7 +9,7 @@
             <a href="/download/live/{{ download_key }}" class="btn primary-btn" style="padding: 0.5rem 1.5rem; border-radius: 20px; font-size: 0.9rem; text-decoration: none; background: #28a745; color: white;">📥 Download CSV</a>
             {% endif %}
             
-            <a href="/scraping/static" class="btn primary-btn" style="padding: 0.5rem 1.5rem; border-radius: 20px; font-size: 0.9rem; text-decoration: none;">← Back to Projects</a>
+           <a href="{{ back_url if back_url else '/scraping/static' }}" class="btn primary-btn" style="padding: 0.5rem 1.5rem; border-radius: 20px; font-size: 0.9rem; text-decoration: none;">← Back to Projects</a>
         </div>
     </div>
 
