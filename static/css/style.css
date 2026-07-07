@@ -453,9 +453,26 @@ body {
     cursor: pointer;
 }
 
+.card-buttons {
+    display: flex;
+    gap: 0.8rem;
+    flex-direction: column;
+}
+
 .card-action-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+}
+
+.card-action-btn.secondary-btn {
+    background: transparent !important;
+    border: 2px solid var(--accent);
+    color: var(--accent);
+}
+
+.card-action-btn.secondary-btn:hover {
+    background: var(--accent) !important;
+    color: white;
 }
 /* ==========================================
    12. SCRAPING PAGE SPECIFIC BUTTONS
