@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="ml-workspace-section">
+    
+    <div class="page-header-block fade-in">
+        <span class="page-badge">Algorithm Repository</span>
+        <h1>Machine Learning Workspace</h1>
+        <p>An interactive library containing your compiled algorithm workflows and model tracking pipelines.</p>
+    </div>
+
+    <div class="ml-search-bar">
+        <input type="text" id="nbSearch" placeholder="Search algorithms..." onkeyup="filterNotebooks()">
+    </div>
+
+    <div id="notebookGrid">
+        {% if notebooks %}
+            {% for notebook in notebooks %}
+            <div class="notebook-card slide-up" data-title="{{ notebook.display_name.lower() }}" onclick="openNotebook('{{ url_for('static', filename='notebooks_html/' ~ notebook.filename) }}', '{{ notebook.display_name }}')">
+                <div class="notebook-card-icon"><i class="fa-solid fa-flask"></i></div>
+                <h4>{{ notebook.display_name }}</h4>
+                <p>Click to inspect code, configurations, and evaluation graphs instantly inside the browser preview window.</p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="notebook-empty">
+                <p>No converted notebooks found in <code>static/notebooks_html/</code>. Run the conversion script first!</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="page-back-link">
+        <a href="/six-weeks-journey" class="outline-btn"><i class="fa-solid fa-arrow-left"></i> Back to Roadmap</a>
+    </div>
+</section>
+{% endblock %}
+
+{% block overlays %}
+<div id="notebookModal" class="notebook-modal" aria-hidden="true" onclick="onNotebookBackdropClick(event)">
+    <div class="modal-inner" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h3 id="modalTitle">Jupyter Workspace Viewer</h3>
+            <button type="button" class="modal-close-x" onclick="closeNotebook()" aria-label="Close notebook viewer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <iframe id="notebookFrame" src="" title="Notebook preview"></iframe>
+    </div>
+</div>
+
+<script>
+    function openNotebook(fileUrl, title) {
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('notebookFrame').src = fileUrl;
+        const modal = document.getElementById('notebookModal');
+        modal.style.display = 'flex';
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeNotebook() {
+        const modal = document.getElementById('notebookModal');
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+        document.getElementById('notebookFrame').src = '';
+        document.body.style.overflow = '';
+    }
+
+    function onNotebookBackdropClick(event) {
+        if (event.target.id === 'notebookModal') {
+            closeNotebook();
+        }
+    }
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && document.getElementById('notebookModal').style.display === 'flex') {
+            closeNotebook();
+        }
+    });
+
+    function filterNotebooks() {
+        let input = document.getElementById('nbSearch').value.toLowerCase();
+        let cards = document.getElementsByClassName('notebook-card');
+        for (let i = 0; i < cards.length; i++) {
+            let titleAttr = cards[i].getAttribute('data-title');
+            cards[i].style.display = titleAttr.includes(input) ? "" : "none";
+        }
+    }
+</script>
+{% endblock %}

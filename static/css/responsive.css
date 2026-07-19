@@ -1,0 +1,212 @@
+/* ==========================================
+   RESPONSIVE — Mobile & Tablet Overrides
+   ========================================== */
+
+@media (max-width: 1024px) {
+    .hero-section {
+        gap: 2.5rem;
+    }
+
+    .hero-text h1 {
+        font-size: 2.8rem;
+    }
+
+    .content-wrapper {
+        padding: 3rem 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Disable cursor fluid effect on mobile */
+    #fluid-cursor-canvas {
+        display: none !important;
+    }
+
+    /* Reduce background complexity */
+    .bg-blob {
+        filter: blur(60px);
+        opacity: 0.3;
+    }
+
+    .bg-blob-1 { width: 300px; height: 300px; }
+    .bg-blob-2 { width: 250px; height: 250px; }
+    .bg-blob-3 { display: none; }
+
+    .bg-particle:nth-child(n+4) {
+        display: none;
+    }
+
+    /* Navbar */
+    .nav-container {
+        padding: 1rem 1.25rem;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+    }
+
+    .nav-links li {
+        margin-left: 0;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+        padding: 0.35rem 0.6rem;
+    }
+
+    /* Hero */
+    .hero-section {
+        flex-direction: column-reverse;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-text h2,
+    .role-text-wrapper {
+        font-size: 1.2rem;
+        justify-content: center;
+    }
+
+    .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cta-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .profile-image-frame {
+        width: 264px;
+        height: 264px;
+        padding: 2px;
+        transform: none !important;
+    }
+
+    .hero-photo-orb {
+        display: none;
+    }
+
+    /* Sections */
+    .section-title,
+    .page-title {
+        font-size: 1.75rem;
+    }
+
+    .skills-grid,
+    .projects-grid,
+    .experience-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info-card {
+        padding: 1.75rem;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    /* Timeline */
+    .timeline-container {
+        padding-left: 1.5rem;
+    }
+
+    .timeline-node {
+        left: -2.5rem !important;
+    }
+
+    /* Journey page */
+    .journey-page .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* ML workspace grid */
+    #notebookGrid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* PowerBI grid */
+    .powerbi-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Dev character */
+    .dev-character {
+        width: 56px;
+        height: 56px;
+        bottom: 0.5rem;
+        right: 0.5rem;
+    }
+
+    /* Tables */
+    .table-container {
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+        border-radius: 12px;
+    }
+
+    /* Prevent horizontal scroll */
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Buttons — larger tap targets */
+    .btn {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 1.85rem;
+    }
+
+    .profile-image-frame {
+        width: 204px;
+        height: 204px;
+        padding: 2px;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .edu-card,
+    .journey-card {
+        padding: 1.25rem;
+    }
+
+    .semester-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .project-card:hover,
+    .skill-card:hover,
+    .experience-card:hover,
+    .glass-card:hover {
+        transform: none;
+    }
+
+    .btn {
+        transform: none !important;
+    }
+}

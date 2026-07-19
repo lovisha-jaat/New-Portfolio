@@ -5,9 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lovisha Jaat | Portfolio</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
 </head>
 <body>
+
+    <!-- Animated background -->
+    <div class="bg-animation" aria-hidden="true">
+        <div class="bg-blob bg-blob-1"></div>
+        <div class="bg-blob bg-blob-2"></div>
+        <div class="bg-blob bg-blob-3"></div>
+        <div class="bg-blob bg-blob-4"></div>
+        <div class="bg-grid"></div>
+        <div class="float-shape float-shape-1"></div>
+        <div class="float-shape float-shape-2"></div>
+        <div class="float-shape float-shape-3"></div>
+        <div class="bg-particle" style="top: 15%; left: 20%; animation-delay: 0s;"></div>
+        <div class="bg-particle" style="top: 60%; left: 75%; animation-delay: -4s;"></div>
+        <div class="bg-particle" style="top: 80%; left: 30%; animation-delay: -8s;"></div>
+        <div class="bg-particle" style="top: 35%; left: 85%; animation-delay: -12s;"></div>
+        <div class="bg-particle" style="top: 10%; left: 55%; animation-delay: -6s;"></div>
+    </div>
+
+    <!-- Fluid cursor trail canvas -->
+    <canvas id="fluid-cursor-canvas" aria-hidden="true"></canvas>
 
     <nav class="navbar">
         <div class="nav-container">
@@ -15,7 +38,8 @@
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="/projects">Projects</a></li>
-                <li><a href="/experience">Experience & Leadership</a></li>
+                <li><a href="/experience">Credentials & Honors</a></li>
+                <li><a href="/education">Education</a></li>
             </ul>
         </div>
     </nav>
@@ -28,5 +52,9 @@
         <p>&copy; 2026 Lovisha Jaat. Built with Flask, HTML, & CSS.</p>
     </footer>
 
+    {% block overlays %}{% endblock %}
+
+    <script src="{{ url_for('static', filename='js/fluid-cursor.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/animations.js') }}" defer></script>
 </body>
 </html>

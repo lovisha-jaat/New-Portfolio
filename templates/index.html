@@ -3,59 +3,116 @@
 <section class="hero-section">
     <div class="hero-text fade-in">
         <h1>Hi, I'm <span class="highlight">Lovisha Jaat</span></h1>
-        <h2>Computer Science Student & AI/ML Enthusiast</h2>
+        <h2 class="role-text-wrapper"><span id="role-text">Full Stack Developer</span></h2>
         <p>B.Tech CSE student at JMIETI. Passionate about DSA, web scraping, and building intelligent software solutions.
         </p>
         <div class="cta-buttons">
-            <a href="/projects" class="btn primary-btn">View My Work</a>
-            <a href="https://github.com/lovisha-jaat" target="_blank" class="btn secondary-btn">Visit GitHub</a>
+            <a href="/projects" class="btn primary-btn magnetic-hover">View My Work <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="https://github.com/lovisha-jaat" target="_blank" class="btn secondary-btn magnetic-hover">Visit GitHub <i class="fa-brands fa-github"></i></a>
         </div>
     </div>
+    <!-- HERO MIDDLE ROBOT ELEMENT CONFIGURATION -->
+
     <div class="hero-image-container fade-in">
-        <div class="profile-image-frame">
-            <img src="{{ url_for('static', filename='images/profile.jpeg') }}" alt="Lovisha Jaat" class="profile-img">
+        <div class="hero-image-wrapper">
+            <div class="hero-photo-orb" aria-hidden="true"></div>
+            <div class="profile-image-frame">
+                <img src="{{ url_for('static', filename='images/profile.jpeg') }}" alt="Lovisha Jaat" class="profile-img">
+            </div>
         </div>
+    </div>
+    
+</section>
+
+<!-- TECHNICAL EXPERTISE SECTION -->
+<section style="padding: 5rem 1rem; max-width: 1200px; margin: 0 auto; font-family: 'Segoe UI', system-ui, sans-serif;">
+    
+    <div style="text-align: center; margin-bottom: 4rem;">
+        <h2 style="font-size: 2.5rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; letter-spacing: -0.5px;">Technical Expertise</h2>
+        <div style="width: 60px; height: 4px; background: linear-gradient(90deg, #2563eb, #4f46e5); margin: 1rem auto 0; border-radius: 2px;"></div>
+    </div>
+
+    <!-- Responsive Layout Grid Supporting Up to 4 Columns Cleanly -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem;">
+        
+        <!-- CARD 1: LANGUAGES -->
+        <div class="expertise-card" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 2.25rem 2rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+                <span style="color: #2563eb; font-weight: 700; font-size: 1.25rem;">&lt;/&gt;</span>
+                <h3 style="margin: 0; font-size: 1.25rem; font-weight: 700; color: #1e3a8a;">Languages</h3>
+            </div>
+            <p style="margin: 0; color: #334155; font-size: 0.975rem; line-height: 1.7; font-weight: 500;">
+                C++, Python, Java, SQL, JavaScript (Basics), HTML/CSS.
+            </p>
+        </div>
+
+        <!-- CARD 2: CORE CS & AI -->
+        <div class="expertise-card" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 2.25rem 2rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+                <svg style="width: 24px; height: 24px; fill: #2563eb;" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.53c-.26-.81-1-1.4-1.9-1.4h-1v-3c0-.55-.45-1-1-1h-6v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.4z"/></svg>
+                <h3 style="margin: 0; font-size: 1.25rem; font-weight: 700; color: #1e3a8a;">Core CS and AI</h3>
+            </div>
+            <p style="margin: 0; color: #334155; font-size: 0.975rem; line-height: 1.7; font-weight: 500;">
+                DSA, OOPs, Machine Learning Fundamentals, Web Scraping, Data Manipulation.
+            </p>
+        </div>
+
+        <!-- CARD 3: LIBRARIES & TOOLS -->
+        <div class="expertise-card" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 2.25rem 2rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+                <svg style="width: 24px; height: 24px; fill: #2563eb;" viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
+                <h3 style="margin: 0; font-size: 1.25rem; font-weight: 700; color: #1e3a8a;">Libraries and Tools</h3>
+            </div>
+            <p style="margin: 0; color: #334155; font-size: 0.975rem; line-height: 1.7; font-weight: 500;">
+                ReactJS, Pandas, Requests, Beautiful Soup, Git, GitHub, Docker (Basics).
+            </p>
+        </div>
+
+        <!-- NEW CARD 4: DEVELOPMENT FRAMEWORKS -->
+        <div class="expertise-card" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 2.25rem 2rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+                <svg style="width: 24px; height: 24px; fill: #2563eb;" viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/></svg>
+                <h3 style="margin: 0; font-size: 1.25rem; font-weight: 700; color: #1e3a8a;">Backend and Databases</h3>
+            </div>
+            <p style="margin: 0; color: #334155; font-size: 0.975rem; line-height: 1.7; font-weight: 500;">
+                Flask, FastAPI, SQLite, Supabase Cloud Storage, Large Language Model Orchestration.
+            </p>
+        </div>
+
     </div>
 </section>
 
-<section class="skills-section fade-in">
-    <h2 class="section-title">Technical Expertise</h2>
-    <div class="skills-grid">
-        <div class="skill-card">
-            <h3>Languages</h3>
-            <p>C++, Python, Java, SQL, JavaScript (Basics), HTML/CSS.</p>
-        </div>
-        <div class="skill-card">
-            <h3>Core CS & AI</h3>
-            <p>DSA, OOPs, Machine Learning Fundamentals, Web Scraping, Data Manipulation.</p>
-        </div>
-        <div class="skill-card">
-            <h3>Libraries & Tools</h3>
-            <p>ReactJS, Pandas, Requests, Beautiful Soup, Git, GitHub, Docker (Basics).</p>
-        </div>
-    </div>
-</section>
+<!-- INLINE HOVER TRANSFORM STYLE DEFINITIONS -->
+<style>
+    .expertise-card:hover {
+        transform: translateY(-6px);
+        border-color: #2563eb !important;
+        background: #f8fafc !important;
+        box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.08), 0 10px 10px -5px rgba(37, 99, 235, 0.04) !important;
+    }
+</style>
 
-<!-- New Integrated Contact Section -->
 <section class="contact-section fade-in">
     <h2 class="section-title">Get In Touch</h2>
     <p class="contact-subtitle">Let's connect! Feel free to reach out for collaborations or opportunities.</p>
     <div class="contact-container">
         <div class="contact-info-card">
+            <!-- Developer character with eye tracking -->
+            
             <div class="info-item">
-                <span class="info-label">Email:</span>
+                <span class="info-label"><i class="fa-solid fa-envelope"></i> Email:</span>
                 <a href="mailto:lovishajaat02@gmail.com" class="contact-link">lovishajaat02@gmail.com</a>
             </div>
             <div class="info-item">
-                <span class="info-label">Phone:</span>
+                <span class="info-label"><i class="fa-solid fa-phone"></i> Phone:</span>
                 <span class="contact-text">+91-9813960734</span>
             </div>
             <div class="info-item">
-                <span class="info-label">LinkedIn:</span>
+                <span class="info-label"><i class="fa-brands fa-linkedin"></i> LinkedIn:</span>
                 <a href="https://linkedin.com/in/lovisha-jaat" target="_blank" class="contact-link">lovisha-jaat</a>
             </div>
             <div class="info-item">
-                <span class="info-label">GitHub:</span>
+                <span class="info-label"><i class="fa-brands fa-github"></i> GitHub:</span>
                 <a href="https://github.com/lovisha-jaat" target="_blank" class="contact-link">lovisha-jaat</a>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import io
 import os
+import subprocess
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -22,6 +23,14 @@ def projects():
 @app.route('/experience')
 def experience():
     return render_template('experience.html') 
+
+@app.route('/education')
+def education():
+    return render_template('education.html')
+
+@app.route('/six-weeks-journey')
+def six_weeks_journey():
+    return render_template('six_weeks.html')
 
 @app.route('/scraping')
 def scraping():
@@ -47,7 +56,6 @@ def get_books_data():
         response = requests.get(url, headers=headers, timeout=10)
         
         if response.status_code == 200:
-            # FORCE standard UTF-8 encoding to clean up the Â character glitch
             response.encoding = 'utf-8' 
             
             soup = BeautifulSoup(response.text, 'html.parser')
@@ -64,6 +72,7 @@ def get_books_data():
     except Exception:
         pass
     return [{"Title": "Sample Book A", "Price": "£25.00", "Rating": "Three", "Availability": "In stock"}]
+
 def get_quotes_data():
     url = "https://quotes.toscrape.com/"
     try:
@@ -146,17 +155,12 @@ def get_amazon_data():
                 title_el = p.find('h2', class_='a-size-medium')
                 price_el = p.find('span', class_='a-price-whole')
                 rating_el = p.find('i', class_='a-icon-star-small') or p.find('i', class_='a-icon-star')
-                
-                # Extract the link element containing the product detail page path
                 link_el = p.find('a', class_='a-link-normal s-no-outline')
                 
                 if title_el:
                     clean_title = title_el.text.strip()[:80] + "..."
-                    # Construct absolute destination URL
                     product_url = base_amazon_url + link_el['href'] if link_el else url
-                    
-                    # Convert plain text to a styled, responsive clickable HTML link
-                    clickable_title = f'<a href="{product_url}" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">{clean_title}</a>'
+                    clickable_title = f'<a href="{product_url}" target="_blank" rel="noopener noreferrer" style="color: #505967; text-decoration: none; font-weight: 500;">{clean_title}</a>'
                     
                     data.append({
                         "Laptop Model": clickable_title,
@@ -167,22 +171,15 @@ def get_amazon_data():
     except Exception:
         pass
     
-    # Fully updated fallback dataset embedded with interactive clean tracking links
-    # Fully updated fallback dataset embedded with unique search/product links for each specific device
     return [
-        {"Laptop Model": '<a href="https://www.amazon.in/s?k=hp+laptop+15s" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">HP Laptop 15s, AMD Ryzen 3 5300U</a>', "Price (INR)": "₹32,490", "Rating": "4.1 out of 5 stars"},
-        {"Laptop Model": '<a href="https://www.amazon.in/s?k=asus+vivobook+15" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">ASUS Vivobook 15, Intel Core i5-1235U</a>', "Price (INR)": "₹49,990", "Rating": "4.3 out of 5 stars"},
-        {"Laptop Model": '<a href="https://www.amazon.in/s?k=lenovo+ideapad+slim+3" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">Lenovo IdeaPad Slim 3, Intel Core i3</a>', "Price (INR)": "₹35,990", "Rating": "4.0 out of 5 stars"},
-        {"Laptop Model": '<a href="https://www.amazon.in/s?k=dell+inspiron+3520" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">Dell Inspiron 3520, Intel Core i5</a>', "Price (INR)": "₹44,190", "Rating": "4.2 out of 5 stars"},
-        {"Laptop Model": '<a href="https://www.amazon.in/s?k=apple+macbook+air+m1" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">Apple MacBook Air Laptop (M1 Chip)</a>', "Price (INR)": "₹69,990", "Rating": "4.7 out of 5 stars"},
-        {"Laptop Model": '<a href="https://www.amazon.in/s?k=acer+aspire+lite" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">Acer Aspire Lite, AMD Ryzen 5</a>', "Price (INR)": "₹37,990", "Rating": "4.0 out of 5 stars"},
-        {"Laptop Model": '<a href="https://www.amazon.in/s?k=hp+pavilion+14" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">HP Pavilion 14, Intel Core i5</a>', "Price (INR)": "₹64,990", "Rating": "4.4 out of 5 stars"},
-        {"Laptop Model": '<a href="https://www.amazon.in/s?k=lenovo+v15" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">Lenovo V15 G3, AMD Ryzen 5</a>', "Price (INR)": "₹34,200", "Rating": "3.9 out of 5 stars"},
-        {"Laptop Model": '<a href="https://www.amazon.in/s?k=xiaomi+notebook+pro" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">Xiaomi Notebook Pro, Intel Core i5</a>', "Price (INR)": "₹46,999", "Rating": "4.3 out of 5 stars"},
-        {"Laptop Model": '<a href="https://www.amazon.in/s?k=samsung+galaxy+book3" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">Samsung Galaxy Book3, Intel Core i5</a>', "Price (INR)": "₹57,990", "Rating": "4.2 out of 5 stars"},
-        {"Laptop Model": '<a href="https://www.amazon.in/s?k=asus+tuf+gaming+f15" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">ASUS TUF Gaming F15 (Gaming GPU)</a>', "Price (INR)": "₹52,990", "Rating": "4.4 out of 5 stars"},
-        {"Laptop Model": '<a href="https://www.amazon.in/s?k=msi+modern+14" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">MSI Modern 14, Intel Core i3</a>', "Price (INR)": "₹29,990", "Rating": "4.1 out of 5 stars"}
+        {"Laptop Model": '<a href="https://www.amazon.in/s?k=hp+laptop+15s" target="_blank" rel="noopener noreferrer" style="color: #505967; text-decoration: none; font-weight: 500;">HP Laptop 15s, AMD Ryzen 3 5300U</a>', "Price (INR)": "₹32,490", "Rating": "4.1 out of 5 stars"},
+        {"Laptop Model": '<a href="https://www.amazon.in/s?k=asus+vivobook+15" target="_blank" rel="noopener noreferrer" style="color: #505967; text-decoration: none; font-weight: 500;">ASUS Vivobook 15, Intel Core i5-1235U</a>', "Price (INR)": "₹49,990", "Rating": "4.3 out of 5 stars"},
+        {"Laptop Model": '<a href="https://www.amazon.in/s?k=lenovo+ideapad+slim+3" target="_blank" rel="noopener noreferrer" style="color: #505967; text-decoration: none; font-weight: 500;">Lenovo IdeaPad Slim 3, Intel Core i3</a>', "Price (INR)": "₹35,990", "Rating": "4.0 out of 5 stars"},
+        {"Laptop Model": '<a href="https://www.amazon.in/s?k=dell+inspiron+3520" target="_blank" rel="noopener noreferrer" style="color: #505967; text-decoration: none; font-weight: 500;">Dell Inspiron 3520, Intel Core i5</a>', "Price (INR)": "₹44,190", "Rating": "4.2 out of 5 stars"},
+        {"Laptop Model": '<a href="https://www.amazon.in/s?k=apple+macbook+air+m1" target="_blank" rel="noopener noreferrer" style="color: #505967; text-decoration: none; font-weight: 500;">Apple MacBook Air Laptop (M1 Chip)</a>', "Price (INR)": "₹69,990", "Rating": "4.7 out of 5 stars"},
+        {"Laptop Model": '<a href="https://www.amazon.in/s?k=acer+aspire+lite" target="_blank" rel="noopener noreferrer" style="color: #505967; text-decoration: none; font-weight: 500;">Acer Aspire Lite, AMD Ryzen 5</a>', "Price (INR)": "₹37,990", "Rating": "4.0 out of 5 stars"}
     ]
+
 # ==========================================
 # DYNAMIC DATA GATHERING CONTROLLER ENGINES
 # ==========================================
@@ -214,57 +211,24 @@ def get_remoteok_data():
     except Exception:
         pass
 
-    # Expanded 12-item fallback dataset
     return [
-        {"Job Title": "Remote Senior Python Engineer", "Company": "TechStars", "Tags/Salary": "💰 $120,000 - $150,000"},
-        {"Job Title": "Data Engineer (Python & Spark)", "Company": "DataLoop", "Tags/Salary": "💰 $90,000 - $115,000"},
-        {"Job Title": "Backend Developer - Python/Flask", "Company": "Streamline", "Tags/Salary": "💰$70,000 - $85,000"},
-        {"Job Title": "AI / Machine Learning Engineer", "Company": "NeuralNet Labs", "Tags/Salary": "💰 $130,000 - $160,000"},
-        {"Job Title": "Full Stack Python Developer", "Company": "CloudScale", "Tags/Salary": "💰 $100,000 - $130,000"},
-        {"Job Title": "Junior Backend Developer", "Company": "AppForge", "Tags/Salary": "💰 $60,000 - $80,000"},
-        {"Job Title": "Python Devops & Infrastructure Engineer", "Company": "OpsTerra", "Tags/Salary": "💰 $115,000 - $140,000"},
-        {"Job Title": "Lead Data Scientist (NLP focus)", "Company": "LexisAI", "Tags/Salary": "💰 $145,000 - $175,000"},
-        {"Job Title": "Django Web Specialist", "Company": "CodeCraft Solutions", "Tags/Salary": "💰 $85,000 - $110,000"},
-        {"Job Title": "QA Automation Engineer (PyTest)", "Company": "TestVantage", "Tags/Salary": "💰 $75,000 - $95,000"},
-        {"Job Title": "FastAPI Core Developer", "Company": "API Flow", "Tags/Salary": "💰 $80,000 - $105,000"},
-        {"Job Title": "Python Scripting & Automation Expert", "Company": "AutoSys Ltd", "Tags/Salary": "💰 $70,000 - $90,000"}
+        {"Job Title": "Remote Senior Python Engineer", "Company": "TechStars", "Tags/Salary": "$120,000 - $150,000"},
+        {"Job Title": "Data Engineer (Python & Spark)", "Company": "DataLoop", "Tags/Salary": "$90,000 - $115,000"},
+        {"Job Title": "Backend Developer - Python/Flask", "Company": "Streamline", "Tags/Salary": "$70,000 - $85,000"}
     ]
 
 def get_imdb_data():
-    # Expanded to show a premium Top 15 Movie Matrix
     return [
         {"Rank": "1", "Movie Title": "The Shawshank Redemption", "Year": "1994", "IMDb Rating": "9.3"},
         {"Rank": "2", "Movie Title": "The Godfather", "Year": "1972", "IMDb Rating": "9.2"},
-        {"Rank": "3", "Movie Title": "The Dark Knight", "Year": "2008", "IMDb Rating": "9.0"},
-        {"Rank": "4", "Movie Title": "The Godfather Part II", "Year": "1974", "IMDb Rating": "9.0"},
-        {"Rank": "5", "Movie Title": "12 Angry Men", "Year": "1957", "IMDb Rating": "9.0"},
-        {"Rank": "6", "Movie Title": "Schindler's List", "Year": "1993", "IMDb Rating": "8.9"},
-        {"Rank": "7", "Movie Title": "The Lord of the Rings: The Return of the King", "Year": "2003", "IMDb Rating": "8.9"},
-        {"Rank": "8", "Movie Title": "Pulp Fiction", "Year": "1994", "IMDb Rating": "8.8"},
-        {"Rank": "9", "Movie Title": "The Lord of the Rings: The Fellowship of the Ring", "Year": "2001", "IMDb Rating": "8.8"},
-        {"Rank": "10", "Movie Title": "The Good, the Bad and the Ugly", "Year": "1966", "IMDb Rating": "8.8"},
-        {"Rank": "11", "Movie Title": "Forrest Gump", "Year": "1994", "IMDb Rating": "8.8"},
-        {"Rank": "12", "Movie Title": "Fight Club", "Year": "1999", "IMDb Rating": "8.7"},
-        {"Rank": "13", "Movie Title": "The Lord of the Rings: The Two Towers", "Year": "2002", "IMDb Rating": "8.7"},
-        {"Rank": "14", "Movie Title": "Inception", "Year": "2010", "IMDb Rating": "8.7"},
-        {"Rank": "15", "Movie Title": "Star Wars: Episode V - The Empire Strikes Back", "Year": "1980", "IMDb Rating": "8.7"}
+        {"Rank": "3", "Movie Title": "The Dark Knight", "Year": "2008", "IMDb Rating": "9.0"}
     ]
 
 def get_goodreads_data():
-    # Expanded to show an extensive Python Programming book index
     return [
         {"Book Title": "Python Crash Course", "Author": "Eric Matthes", "Average Rating": "4.61", "Score": "9,241"},
         {"Book Title": "Automate the Boring Stuff with Python", "Author": "Al Sweigart", "Average Rating": "4.66", "Score": "7,104"},
-        {"Book Title": "Fluent Python: Concise Programming", "Author": "Luciano Ramalho", "Average Rating": "4.71", "Score": "4,210"},
-        {"Book Title": "Learning Python", "Author": "Mark Lutz", "Average Rating": "4.08", "Score": "3,890"},
-        {"Book Title": "Effective Python: 90 Specific Ways to Write Better Python", "Author": "Brett Slatkin", "Average Rating": "4.53", "Score": "2,950"},
-        {"Book Title": "Think Python: How to Think Like a Computer Scientist", "Author": "Allen B. Downey", "Average Rating": "4.15", "Score": "2,410"},
-        {"Book Title": "Python Data Science Handbook", "Author": "Jake VanderPlas", "Average Rating": "4.65", "Score": "2,180"},
-        {"Book Title": "Introduction to Machine Learning with Python", "Author": "Andreas C. Müller", "Average Rating": "4.48", "Score": "1,870"},
-        {"Book Title": "Head First Python: A Brain-Friendly Guide", "Author": "Paul Barry", "Average Rating": "4.11", "Score": "1,650"},
-        {"Book Title": "High Performance Python", "Author": "Micha Gorelick", "Average Rating": "4.39", "Score": "1,120"},
-        {"Job Title": "Two Scoops of Django: Best Practices", "Author": "Daniel Roy Greenfeld", "Average Rating": "4.55", "Score": "980"},
-        {"Book Title": "Python Tricks: A Buffet of Awesome Features", "Author": "Dan Bader", "Average Rating": "4.51", "Score": "940"}
+        {"Book Title": "Fluent Python: Concise Programming", "Author": "Luciano Ramalho", "Average Rating": "4.71", "Score": "4,210"}
     ]
 
 
@@ -272,7 +236,10 @@ def get_goodreads_data():
 # INTERACTIVE DATAFRAME RENDER CHANNELS
 # ==========================================
 
-# --- Static Views ---
+@app.route('/powerbi-dashboards')
+def powerbi_dashboards():
+    return render_template('powerbi.html', title='PowerBI Analytics Dashboards')
+
 @app.route('/scraping/static/books/csv')
 def view_books_csv():
     df = pd.DataFrame(get_books_data())
@@ -296,18 +263,45 @@ def view_hockey_csv():
 @app.route('/scraping/static/amazon/csv')
 def view_amazon_csv():
     df = pd.DataFrame(get_amazon_data())
-    # CRITICAL: escape=False must be added here
     table_html = df.to_html(classes='csv-data-table', index=False, escape=False)
     return render_template('view_csv.html', table_html=table_html, title='Amazon Laptop Extracted Collection', download_key='amazon')
 
+
 # =========================================================
-# DYNAMIC VIEW ROUTE ENDPOINTS (UPDATED BACK ROUTING PATHS)
+# NEW CRITICAL FIX: DYNAMIC INTERACTIVE WORKSPACE CONTROLLER
+# =========================================================
+
+@app.route('/ml-workspace')
+def ml_workspace():
+    notebooks = []
+    notebooks_dir = os.path.join(app.static_folder, 'notebooks_html')
+    
+    # Debug lines: prints directly to your VS Code terminal window
+    print("--- TESTING JUPYTER DIRECTORY SCANNER ---")
+    print(f"Looking for HTML files inside: {notebooks_dir}")
+    print(f"Folder exists? {os.path.exists(notebooks_dir)}")
+    
+    if os.path.exists(notebooks_dir):
+        files = [f for f in os.listdir(notebooks_dir) if f.endswith('.html')]
+        print(f"Found files count: {len(files)}")
+        for idx, file in enumerate(sorted(files), start=1):
+            clean_name = file.replace('.html', '').replace('_', ' ').replace('-', ' ').title()
+            notebooks.append({
+                "id": idx,
+                "filename": file,
+                "display_name": clean_name
+            })
+            
+    return render_template('ml_workspace.html', title='Machine Learning Workspace', notebooks=notebooks)
+
+
+# =========================================================
+# DYNAMIC VIEW ROUTE ENDPOINTS
 # =========================================================
 
 @app.route('/scraping/dynamic/amazon/csv')
 def view_dynamic_amazon_csv():
     df = pd.DataFrame(get_amazon_data())
-    # escape=False renders the laptop titles as clickable unique target hyperlinks
     table_html = df.to_html(classes='csv-data-table', index=False, escape=False)
     return render_template('view_csv.html', table_html=table_html, title='Dynamic Amazon Laptop Search Results', download_key='dyn_amazon', back_url='/scraping/dynamic')
 
@@ -334,6 +328,8 @@ def view_goodreads_csv():
     df = pd.DataFrame(get_goodreads_data())
     table_html = df.to_html(classes='csv-data-table', index=False)
     return render_template('view_csv.html', table_html=table_html, title='Goodreads Query Analytics Dataset', download_key='goodreads', back_url='/scraping/dynamic')
+
+
 # ==========================================
 # CENTRAL DYNAMIC CSV DOWNLOADING ENGINE
 # ==========================================
@@ -360,7 +356,6 @@ def download_live_csv(key):
         headers={"Content-disposition": f"attachment; filename={key}_scraped_data.csv"}
     )
 
-# Standard books layout view
 @app.route('/scraping/static/books')
 def books_to_scrape():
     scraped_books = []
@@ -371,7 +366,6 @@ def books_to_scrape():
         })
     return render_template('books_data.html', books=scraped_books)
 
-# 1. Base Loader Route
 @app.route('/scraping/api')
 def api_scraping():
     return render_template('api_scraping.html')
@@ -392,10 +386,7 @@ def get_universities_data():
                 data = []
                 for item in json_data[:25]:
                     raw_domain = item.get("domain", "N/A") or ", ".join(item.get("domains", []))
-                    
-                    # Convert plain domain to clickable link
-                    clickable_domain = f'<a href="http://{raw_domain}" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">{raw_domain}</a>'
-                    
+                    clickable_domain = f'<a href="http://{raw_domain}" target="_blank" rel="noopener noreferrer" style="color: #505967; text-decoration: none; font-weight: 500;">{raw_domain}</a>'
                     data.append({
                         "University Name": item.get("name", "N/A"),
                         "Domain": clickable_domain
@@ -404,32 +395,22 @@ def get_universities_data():
     except Exception as e:
         print(f"Live API Fetch Error (Universities): {e}")
     
-    # EXPANDED DATASET FOR FALLBACK WITHOUT THE COUNTRY COLUMN
     fallback_raw = [
         {"University Name": "Indian Institute of Technology Delhi", "Domain": "iitd.ac.in"},
         {"University Name": "Indian Institute of Science", "Domain": "iisc.ac.in"},
-        {"University Name": "University of Delhi", "Domain": "du.ac.in"},
-        {"University Name": "IIT Bombay", "Domain": "iitb.ac.in"},
-        {"University Name": "Jawaharlal Nehru University", "Domain": "jnu.ac.in"},
-        {"University Name": "BITS Pilani", "Domain": "bits-pilani.ac.in"},
-        {"University Name": "Anna University", "Domain": "annauniv.edu"},
-        {"University Name": "University of Mumbai", "Domain": "mu.ac.in"},
-        {"University Name": "IIT Madras", "Domain": "iitm.ac.in"},
-        {"University Name": "IIT Kharagpur", "Domain": "iitkgp.ac.in"},
-        {"University Name": "Banaras Hindu University", "Domain": "bhu.ac.in"},
-        {"University Name": "Vellore Institute of Technology", "Domain": "vit.ac.in"}
+        {"University Name": "University of Delhi", "Domain": "du.ac.in"}
     ]
     
     data = []
     for item in fallback_raw:
-        clickable_domain = f'<a href="http://{item["Domain"]}" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">{item["Domain"]}</a>'
+        clickable_domain = f'<a href="http://{item["Domain"]}" target="_blank" rel="noopener noreferrer" style="color: #505967; text-decoration: none; font-weight: 500;">{item["Domain"]}</a>'
         data.append({
             "University Name": item["University Name"],
             "Domain": clickable_domain
         })
     return data
+
 def get_fakestore_data():
-    # Scraping live e-commerce catalogs from FakeStoreAPI
     url = "https://fakestoreapi.com/products"
     try:
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
@@ -450,9 +431,7 @@ def get_fakestore_data():
         print(f"Live API Fetch Error (FakeStore): {e}")
     return [{"Product ID": "1", "Title": "Fjallraven Backpack", "Price": "$109.95", "Category": "men's clothing", "Rating": "3.9 (120 reviews)"}]
 
-
 def get_placeholder_data():
-    # Querying live global developer streams from the real GitHub Infrastructure API
     url = "https://api.github.com/events"
     try:
         headers = {
@@ -463,16 +442,12 @@ def get_placeholder_data():
         if response.status_code == 200:
             json_data = response.json()
             data = []
-            
-            # Extract and parse the first 25 real global developer events
             for event in json_data[:25]:
                 actor = event.get("actor", {})
                 repo = event.get("repo", {})
-                
-                # Make the repository name link directly to its live project page on GitHub
                 repo_name = repo.get("name", "Unknown-Repo")
                 repo_link = f"https://github.com/{repo_name}"
-                clickable_repo = f'<a href="{repo_link}" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 500;">{repo_name}</a>'
+                clickable_repo = f'<a href="{repo_link}" target="_blank" rel="noopener noreferrer" style="color: #505967; text-decoration: none; font-weight: 500;">{repo_name}</a>'
                 
                 data.append({
                     "Event ID": event.get("id", "N/A"),
@@ -484,22 +459,17 @@ def get_placeholder_data():
     except Exception as e:
         print(f"Live GitHub API Scrape Error: {e}")
         
-    # Professional local backup template matrix if GitHub limits our public IP requests
     return [
-        {"Event ID": "40219481", "Developer Username": "linus-torvalds", "Action Type": "Push Action", "Target Repository": '<a href="https://github.com/torvalds/linux" target="_blank" style="color: #38bdf8; text-decoration: none;">torvalds/linux</a>'},
-        {"Event ID": "40219482", "Developer Username": "lovisha-jaat", "Action Type": "Create Action", "Target Repository": '<a href="https://github.com/lovisha-jaat/AIML-bootcamp-resource" target="_blank" style="color: #38bdf8; text-decoration: none;">lovisha-jaat/AIML-bootcamp-resource</a>'},
-        {"Event ID": "40219483", "Developer Username": "guido-van-rossum", "Action Type": "IssueComment Action", "Target Repository": '<a href="https://github.com/python/cpython" target="_blank" style="color: #38bdf8; text-decoration: none;">python/cpython</a>'}
+        {"Event ID": "40219481", "Developer Username": "linus-torvalds", "Action Type": "Push Action", "Target Repository": '<a href="https://github.com/torvalds/linux" target="_blank" style="color: #38bdf8; text-decoration: none;">torvalds/linux</a>'}
     ]
 
 def get_dummyjson_data():
-    # Scraping complex nested product inventories from DummyJSON
     url = "https://dummyjson.com/products"
     try:
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
         response = requests.get(url, headers=headers, timeout=10)
         if response.status_code == 200:
             json_data = response.json()
-            # DummyJSON packs its main output payload list inside a dictionary key named "products"
             products_list = json_data.get("products", [])
             data = []
             for item in products_list[:25]:
@@ -515,16 +485,14 @@ def get_dummyjson_data():
         print(f"Live API Fetch Error (DummyJSON): {e}")
     return [{"Item": "Essence Mascara Lash Princess", "Price": "$9.99", "Stock Status": "5", "Brand": "Essence", "Category": "beauty"}]
 
-
 # ==========================================
-# UPDATE YOUR API VIEWS TO GO BACK TO API PAGE
+# LIVE API VIEWS
 # ==========================================
 
 @app.route('/scraping/api/universities/csv')
 def view_universities_csv():
     df = pd.DataFrame(get_universities_data())
     table_html = df.to_html(classes='csv-data-table', index=False, escape=False)
-    # Added back_url parameter pointing to the API dashboard
     return render_template('view_csv.html', table_html=table_html, title='Codroid Hub Universities Catalog', download_key='api_uni', back_url='/scraping/api')
 
 @app.route('/scraping/api/fakestore/csv')

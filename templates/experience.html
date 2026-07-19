@@ -1,53 +1,125 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="experience-page-section">
-    <h1 class="page-title fade-in">Experience & Leadership</h1>
+<section class="experience-page-section" style="padding: 5rem 1rem; max-width: 1200px; margin: 0 auto; font-family: 'Segoe UI', system-ui, sans-serif;">
+    <h1 class="page-title fade-in" style="font-size: 2.5rem; font-weight: 800; color: #2563eb; text-align: center; margin-bottom: 4rem; letter-spacing: -0.5px;">Experience & Leadership</h1>
     
-    <div class="experience-grid">
-        <!-- Experience Card -->
-        <div class="experience-card slide-up">
-            <div class="card-header">
-                <span class="badge job-badge">Internship</span>
-                <span class="card-date">June 2026 - Present</span>
+    <div class="experience-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        
+        <!-- EXPERIENCE CARD: CODROID HUB -->
+        <div class="experience-card slide-up" style="background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(30, 41, 59, 0.15); border-radius: 20px; padding: 2.25rem 2rem; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                    <span class="badge job-badge" style="background: rgba(37, 99, 235, 0.08); color: #2563eb; font-weight: 700; font-size: 0.8rem; padding: 0.4rem 0.8rem; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Internship</span>
+                    <span class="card-date" style="color: #64748b; font-size: 0.85rem; font-weight: 600;">June 2026 - Present</span>
+                </div>
+                <h2 style="margin: 0; font-size: 1.4rem; font-weight: 800; color: #0f172a; letter-spacing: -0.3px;">AI/ML Engineering Intern</h2>
+                <h3 style="margin: 0.35rem 0 1.25rem; font-size: 1rem; color: #2563eb; font-weight: 600;">Codroid Hub | Ambala, India</h3>
+                <hr class="card-divider" style="border: none; border-top: 1px solid rgba(0, 0, 0, 0.06); margin-bottom: 1.25rem;">
+                <ul style="padding-left: 1.25rem; margin: 0 0 2rem 0; color: #334155; font-size: 0.95rem; line-height: 1.7; font-weight: 500;">
+                    <li style="margin-bottom: 0.6rem;">Engineered automated web scrapers using Python, BeautifulSoup, and Requests to extract and parse unstructured data from dynamic web domains.</li>
+                    <li>Improved scraper reliability using request management techniques and transformed extracted data into structured Pandas DataFrames.</li>
+                </ul>
             </div>
-            <h2>AI/ML Engineering Intern</h2>
-            <h3>Codroid Hub | Ambala, India</h3>
-            <hr class="card-divider">
-            <ul>
-                <li>Engineered automated web scrapers using Python, BeautifulSoup, and Requests to extract and parse unstructured data from dynamic web domains.</li>
-                <li>Improved scraper reliability using request management techniques and transformed extracted data into structured Pandas DataFrames.</li>
-            </ul>
+            <a href="{{ url_for('static', filename='certificates/codroid_certificate.pdf') }}" target="_blank" rel="noopener noreferrer" class="cert-btn" style="text-align: center; display: block; padding: 0.75rem 1.25rem; border-radius: 12px; background: rgba(30, 41, 59, 0.06); border: 1px solid rgba(30, 41, 59, 0.2); color: #1e293b; font-weight: 700; text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; letter-spacing: 0.3px;">
+                View Certificate
+            </a>
         </div>
 
-        <!-- Achievement Card -->
-        <div class="experience-card slide-up" style="animation-delay: 0.1s;">
-            <div class="card-header">
-                <span class="badge achievement-badge">Achievement</span>
-                <span class="card-date">April 2026</span>
+        <!-- ACHIEVEMENT CARD: ELITE HER HACKATHON -->
+        <div class="experience-card slide-up" style="background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(30, 41, 59, 0.15); border-radius: 20px; padding: 2.25rem 2rem; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; justify-content: space-between; animation-delay: 0.1s;">
+            <div>
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                    <span class="badge achievement-badge" style="background: rgba(37, 99, 235, 0.08); color: #2563eb; font-weight: 700; font-size: 0.8rem; padding: 0.4rem 0.8rem; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Achievement</span>
+                    <span class="card-date" style="color: #64748b; font-size: 0.85rem; font-weight: 600;">April 2026</span>
+                </div>
+                <h2 style="margin: 0; font-size: 1.4rem; font-weight: 800; color: #0f172a; letter-spacing: -0.3px;">Elite Her - Top 50 Finalist</h2>
+                <h3 style="margin: 0.35rem 0 1.25rem; font-size: 1rem; color: #2563eb; font-weight: 600;">Team MIND_SPARKS</h3>
+                <hr class="card-divider" style="border: none; border-top: 1px solid rgba(0, 0, 0, 0.06); margin-bottom: 1.25rem;">
+                <ul style="padding-left: 1.25rem; margin: 0 0 2rem 0; color: #334155; font-size: 0.95rem; line-height: 1.7; font-weight: 500;">
+                    <li style="margin-bottom: 0.6rem;">Led team MIND_SPARKS to clear competitive evaluation phases, securing a position in the Top 50 Finalist teams during the project presentation round.</li>
+                    <li>Conceptualized the core system logic for an AI-powered Safe Her application to present before a panel of technical judges.</li>
+                </ul>
             </div>
-            <h2>Elite Her - Top 50 Finalist</h2>
-            <h3>Team MIND_SPARKS</h3>
-            <hr class="card-divider">
-            <ul>
-                <li>Led team MIND_SPARKS to clear competitive evaluation phases, securing a position in the Top 50 Finalist teams during the project presentation (PPT) round.</li>
-                <li>Conceptualized the core system logic for an AI-powered Safe Her (Women's Safety Application) to present before a panel of technical judges.</li>
-            </ul>
+            <a href="{{ url_for('static', filename='certificates/eliteher.pdf') }}" target="_blank" rel="noopener noreferrer" class="cert-btn" style="text-align: center; display: block; padding: 0.75rem 1.25rem; border-radius: 12px; background: rgba(30, 41, 59, 0.06); border: 1px solid rgba(30, 41, 59, 0.2); color: #1e293b; font-weight: 700; text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; letter-spacing: 0.3px;">
+                View Certificate
+            </a>
         </div>
 
-        <!-- Leadership Card -->
-        <div class="experience-card slide-up" style="animation-delay: 0.2s;">
-            <div class="card-header">
-                <span class="badge leadership-badge">Leadership</span>
-                <span class="card-date">Feb 2026</span>
+        <!-- CERTIFICATE CARD: ROCKVERSE HACKATHON -->
+        <div class="experience-card slide-up" style="background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(30, 41, 59, 0.15); border-radius: 20px; padding: 2.25rem 2rem; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; justify-content: space-between; animation-delay: 0.2s;">
+            <div>
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                    <span class="badge achievement-badge" style="background: rgba(37, 99, 235, 0.08); color: #2563eb; font-weight: 700; font-size: 0.8rem; padding: 0.4rem 0.8rem; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Hackathon</span>
+                    <span class="card-date" style="color: #64748b; font-size: 0.85rem; font-weight: 600;">May 2026</span>
+                </div>
+                <h2 style="margin: 0; font-size: 1.4rem; font-weight: 800; color: #0f172a; letter-spacing: -0.3px;">RockVerse Hackathon</h2>
+                <h3 style="margin: 0.35rem 0 1.25rem; font-size: 1rem; color: #2563eb; font-weight: 600;">Big Rock Exchange</h3>
+                <hr class="card-divider" style="border: none; border-top: 1px solid rgba(0, 0, 0, 0.06); margin-bottom: 1.25rem;">
+                <ul style="padding-left: 1.25rem; margin: 0 0 2rem 0; color: #334155; font-size: 0.95rem; line-height: 1.7; font-weight: 500;">
+                    <li style="margin-bottom: 0.6rem;">Demonstrated outstanding technical innovation and determination during team implementation phases.</li>
+                    <li>Collaborated to build scalable algorithmic flows evaluated directly by industrial developers.</li>
+                </ul>
             </div>
-            <h2>Techfest Coordinator</h2>
-            <h3>Campus Engagement</h3>
-            <hr class="card-divider">
-            <ul>
-                <li>Served as Coordinator for the Scenario-Based Coding Competition during the college Techfest, managing logistics and executing event workflows for student developers.</li>
-                <li>Recruited, managed, and mentored a student cohort of juniors to prepare and execute a community Nukkad Natak (Street Play) for a campus blood donation drive.</li>
-            </ul>
+            <a href="{{ url_for('static', filename='certificates/rockverse.pdf') }}" target="_blank" rel="noopener noreferrer" class="cert-btn" style="text-align: center; display: block; padding: 0.75rem 1.25rem; border-radius: 12px; background: rgba(30, 41, 59, 0.06); border: 1px solid rgba(30, 41, 59, 0.2); color: #1e293b; font-weight: 700; text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; letter-spacing: 0.3px;">
+                View Certificate
+            </a>
         </div>
+
+        <!-- CERTIFICATE CARD: CAMPUSCREW 100K MILESTONE -->
+        <div class="experience-card slide-up" style="background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(30, 41, 59, 0.15); border-radius: 20px; padding: 2.25rem 2rem; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; justify-content: space-between; animation-delay: 0.3s;">
+            <div>
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                    <span class="badge achievement-badge" style="background: rgba(37, 99, 235, 0.08); color: #2563eb; font-weight: 700; font-size: 0.8rem; padding: 0.4rem 0.8rem; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Honor</span>
+                    <span class="card-date" style="color: #64748b; font-size: 0.85rem; font-weight: 600;">June 2026</span>
+                </div>
+                <h2 style="margin: 0; font-size: 1.4rem; font-weight: 800; color: #0f172a; letter-spacing: -0.3px;">100K Milestone Honor</h2>
+                <h3 style="margin: 0.35rem 0 1.25rem; font-size: 1rem; color: #2563eb; font-weight: 600;">CampusCrew Community</h3>
+                <hr class="card-divider" style="border: none; border-top: 1px solid rgba(0, 0, 0, 0.06); margin-bottom: 1.25rem;">
+                <ul style="padding-left: 1.25rem; margin: 0 0 2rem 0; color: #334155; font-size: 0.95rem; line-height: 1.7; font-weight: 500;">
+                    <li style="margin-bottom: 0.6rem;">Earned explicit recognition for outstanding contributions during community operations scaling up to 100,000 active students.</li>
+                    <li>Managed internal developer workflows and organized educational programming structures.</li>
+                </ul>
+            </div>
+            <a href="{{ url_for('static', filename='certificates/100k.pdf') }}" target="_blank" rel="noopener noreferrer" class="cert-btn" style="text-align: center; display: block; padding: 0.75rem 1.25rem; border-radius: 12px; background: rgba(30, 41, 59, 0.06); border: 1px solid rgba(30, 41, 59, 0.2); color: #1e293b; font-weight: 700; text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; letter-spacing: 0.3px;">
+                View Certificate
+            </a>
+        </div>
+
+        <!-- CERTIFICATE CARD: FINAL CODESPRINT ROUND -->
+        <div class="experience-card slide-up" style="background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(30, 41, 59, 0.15); border-radius: 20px; padding: 2.25rem 2rem; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; justify-content: space-between; animation-delay: 0.4s;">
+            <div>
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                    <span class="badge achievement-badge" style="background: rgba(37, 99, 235, 0.08); color: #2563eb; font-weight: 700; font-size: 0.8rem; padding: 0.4rem 0.8rem; border-radius: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Competition</span>
+                    <span class="card-date" style="color: #64748b; font-size: 0.85rem; font-weight: 600;">May 2026</span>
+                </div>
+                <h2 style="margin: 0; font-size: 1.4rem; font-weight: 800; color: #0f172a; letter-spacing: -0.3px;">Final CodeSprint Round</h2>
+                <h3 style="margin: 0.35rem 0 1.25rem; font-size: 1rem; color: #2563eb; font-weight: 600;">One Shot Challenge</h3>
+                <hr class="card-divider" style="border: none; border-top: 1px solid rgba(0, 0, 0, 0.06); margin-bottom: 1.25rem;">
+                <ul style="padding-left: 1.25rem; margin: 0 0 2rem 0; color: #334155; font-size: 0.95rem; line-height: 1.7; font-weight: 500;">
+                    <li style="margin-bottom: 0.6rem;">Represented JMIET in final rapid programming rounds within algorithmic and logic speed bounds.</li>
+                    <li>Ranked among competitive shortlists solving challenging optimization tasks under strict time limits.</li>
+                </ul>
+            </div>
+            <a href="{{ url_for('static', filename='certificates/Codesprint.pdf') }}" target="_blank" rel="noopener noreferrer" class="cert-btn" style="text-align: center; display: block; padding: 0.75rem 1.25rem; border-radius: 12px; background: rgba(30, 41, 59, 0.06); border: 1px solid rgba(30, 41, 59, 0.2); color: #1e293b; font-weight: 700; text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease; letter-spacing: 0.3px;">
+                View Certificate
+            </a>
+        </div>
+
     </div>
 </section>
+
+<style>
+    .experience-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(37, 99, 235, 0.3) !important;
+        background: rgba(255, 255, 255, 0.85) !important;
+        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08) !important;
+    }
+    .cert-btn:hover {
+        background: #0f172a !important;
+        color: #ffffff !important;
+        border-color: #0f172a !important;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+    }
+</style>
 {% endblock %}

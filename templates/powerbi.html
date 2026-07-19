@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="powerbi-section">
+    
+    <div class="page-header-block fade-in">
+        <span class="page-badge">Business Intelligence Showcase</span>
+        <h1>My PowerBI Dashboards</h1>
+        <p>Interactive sales distributions and performance metrics dashboards built to evaluate regional orders and product revenue pipelines.</p>
+    </div>
+
+    <div class="powerbi-grid">
+        
+        <a href="{{ url_for('static', filename='pdfs/powerbi.pdf') }}" target="_blank" class="db-clickable-card slide-up">
+            <div class="card-title-row">
+                <h3><i class="fa-solid fa-chart-bar"></i> Regional Sales & Order Volumes</h3>
+            </div>
+            
+            <div class="card-action-bar">
+                <i class="fa-solid fa-file-pdf"></i> Open PDF
+            </div>
+            
+            <p>
+                Analyzes comprehensive item performance trends. Tracks the <strong>Sum of Selling Price</strong> and <strong>Sum of Quantity</strong> distributed across major geographic hubs—including Bhopal, Bengaluru, Mathura, Hyderabad, and Pune—alongside detailed order frequencies sorted by item profiles like Pani Puri, Rasgulla, and Dhokla.
+            </p>
+        </a>
+
+        <a href="{{ url_for('static', filename='pdfs/powerbi2.pdf') }}" target="_blank" class="db-clickable-card slide-up" style="transition-delay: 0.1s;">
+            <div class="card-title-row">
+                <h3><i class="fa-solid fa-chart-line"></i> Profit Margins & Cost Performance</h3>
+            </div>
+            
+            <div class="card-action-bar">
+                <i class="fa-solid fa-file-pdf"></i> Open PDF
+            </div>
+            
+            <p>
+                Focuses on operational target metrics. Visualizes global baseline indicators including a <strong>933.89K Total Selling Price</strong> profile alongside <strong>Expected Profit parameters (118.62K metrics against goals)</strong>, tracking system product costs against dynamic percentage distribution layouts across individual products.
+            </p>
+        </a>
+
+    </div>
+
+    <div class="page-back-link">
+        <a href="/six-weeks-journey" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Roadmap</a>
+    </div>
+</section>
+{% endblock %}

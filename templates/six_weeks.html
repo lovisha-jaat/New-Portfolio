@@ -1,0 +1,283 @@
+{% extends 'base.html' %} {% block content %}
+<section class="journey-page">
+  <div class="page-header-block fade-in">
+    <span class="page-badge">6-Week Roadmap</span>
+    <h1>My AI Internship Journey</h1>
+    <p>
+      An intensive, hands-on path through data science pipelines, backend
+      architecture, machine learning modeling, and generative AI systems.
+    </p>
+  </div>
+
+  <div class="journey-timeline">
+    <div class="timeline-card-wrapper animate-slide-up" style="position: relative; width: 100%">
+      <div class="timeline-node">1</div>
+      <div class="journey-card">
+        <div class="card-header">
+          <div class="week-badge">Week 1</div>
+          <h2>Foundations & The AI Project Cycle</h2>
+        </div>
+        <p class="card-intro">
+          Immersive introduction to AI problem scoping and the structural
+          lifecycle of machine learning initiatives.
+        </p>
+
+        <div class="card-details-grid">
+          <div class="detail-section">
+            <h3>Core Concepts</h3>
+            <ul>
+              <li>
+                <strong>Problem Scoping:</strong> Formulating real-world
+                problems into clear AI targets.
+              </li>
+              <li>
+                <strong>AI Project Cycle:</strong> Exploring the 5 pillars
+                (Scoping → Data Acquisition → Data Exploration → Modeling →
+                Deployment).
+              </li>
+              <li>
+                <strong>Library Matrix:</strong> Introduction to foundational
+                analysis libraries: NumPy, Pandas, Matplotlib, and Seaborn.
+              </li>
+            </ul>
+          </div>
+
+          <!-- Updated DeepSeek Internal Architecture Card with PDF Link -->
+
+          <!-- Fully Clickable DeepSeek Card Block -->
+          <a href="{{ url_for('static', filename='pdfs/Deepseek_blog.pdf') }}" target="_blank"
+            class="clickable-blog-box"
+            style="display: block; margin-top: 1.5rem; background: rgba(80, 89, 103, 0.04); border: 1px dashed rgba(80, 89, 103, 0.25); border-radius: 12px; padding: 1.25rem; text-decoration: none; transition: all 0.3s ease;">
+            <h4
+              style="margin: 0 0 0.5rem; font-size: 1rem; color: var(--primary-accent); display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s ease;">
+              <i class="fa-solid fa-brain"></i> <span class="box-title">DeepSeek Internal Architecture</span>
+            </h4>
+            <p
+              style="margin: 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; transition: color 0.3s ease;">
+              An architectural teardown of how tokens route through DeepSeek's internal framework. When a prompt is
+              entered, it bypasses standard dense compute layers; instead, the Mixture-of-Experts (MoE) system activates
+              only specific neural experts suited for the request. Concurrently, Multi-head Latent Attention (MLA)
+              optimizes the key-value cache memory footprint, drastically speeding up processing and inference
+              generation for complex user prompts.
+            </p>
+          </a>
+        </div>
+
+        <div class="journey-card-actions">
+          <a href="{{ url_for('static', filename='notebooks_html/aiprojectcycle.html') }}" target="_blank"
+            rel="noopener noreferrer" class="ml-link-btn">
+            <i class="fa-solid fa-book-open"></i> View Project Cycle Notebook
+          </a>
+          <a href="{{ url_for('static', filename='notebooks_html/aiprojectcycle.html') }}"
+            download="aiprojectcycle.html" class="ml-link-btn">
+            <i class="fa-solid fa-download"></i> Download Notebook
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-card-wrapper animate-slide-up" style="position: relative; animation-delay: 0.1s; width: 100%">
+      <div class="timeline-node">2</div>
+      <div class="journey-card">
+        <div class="card-header">
+          <div class="week-badge">Week 2</div>
+          <h2>Web Scraping & Data Pipelines</h2>
+        </div>
+        <p class="card-intro">
+          Mastering data extraction techniques to harvest unstructured
+          information from live web platforms.
+        </p>
+        <div class="card-details-grid">
+          <div class="detail-section" style="margin-bottom: 1.5rem">
+            <h3>Core Concepts</h3>
+            <ul>
+              <li>
+                <strong>BeautifulSoup & Requests:</strong> Navigating HTML
+                structures and locating complex class selectors.
+              </li>
+              <li>
+                <strong>Live Pipeline Scrapers:</strong> Built robust script
+                utilities for Amazon India (laptops) and Books to Scrape (UK
+                store).
+              </li>
+              <li>
+                <strong>Fallback & Caching:</strong> Implementing clean
+                try-except fallbacks to guard against CDN blocks and CAPTCHAs.
+              </li>
+              <li>
+                <strong>Git File Orchestration:</strong> Establishing file
+                tracking structures to maintain system versions.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <a href="/scraping" class="ml-link-btn">
+          <i class="fa-solid fa-magnifying-glass"></i> See Web Scraping Projects
+        </a>
+      </div>
+    </div>
+    <!-- WEEK 3 (UPDATED WITH POWERBI BUTTON) -->
+    <div class="timeline-card-wrapper animate-slide-up" style="position: relative; animation-delay: 0.2s; width: 100%;">
+      <div class="timeline-node">3</div>
+      <div class="journey-card">
+        <div class="card-header">
+          <div class="week-badge">Week 3</div>
+          <h2>Flask Micro-Frameworks & BI</h2>
+        </div>
+        <p class="card-intro">Transitioning data from terminal pipelines to beautiful user-facing web applications.</p>
+        <div class="card-details-grid">
+          <div class="detail-section" style="margin-bottom: 1.5rem;">
+            <h3>Core Concepts</h3>
+            <ul>
+              <li><strong>Flask Architecture:</strong> Building routes, dynamic URL endpoints, and asset pipelines.</li>
+              <li><strong>Jinja2 Templating:</strong> Injecting Python lists/Pandas tables safely into HTML without
+                string escaping.</li>
+              <li><strong>Data Cleaning:</strong> Filtering out character glitches (like resolving the <code>Â£</code>
+                encoding error to a clean <code>£</code>).</li>
+              <li><strong>PowerBI Analytics:</strong> Integrating system metrics into dashboards using DAX modeling.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="journey-card-actions">
+          <a href="/powerbi-dashboards" class="ml-link-btn">
+            <i class="fa-solid fa-chart-bar"></i> View PowerBI Dashboards
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 4 (UPDATED WITH ML ALGORITHMS BUTTON) -->
+    <div class="timeline-card-wrapper animate-slide-up" style="position: relative; animation-delay: 0.3s; width: 100%;">
+      <div class="timeline-node">4</div>
+      <div class="journey-card">
+        <div class="card-header">
+          <div class="week-badge">Week 4</div>
+          <h2>Machine Learning Algorithms</h2>
+        </div>
+        <p class="card-intro">Analyzing mathematical foundations and testing patterns within datasets using
+          Scikit-Learn.</p>
+        <div class="card-details-grid">
+          <div class="detail-section" style="margin-bottom: 1.5rem;">
+            <h3>Core Concepts</h3>
+            <ul>
+              <li><strong>Regression:</strong> Training Linear and Polynomial engines to forecast numerical targets.
+              </li>
+              <li><strong>Classification:</strong> Implementing Logistic Regression, Decision Trees, and Support Vector
+                Machines (SVM).</li>
+              <li><strong>Evaluation Metrics:</strong> Assessing models via Mean Squared Error (MSE), Precision, Recall,
+                and the $F_1$-score.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="journey-card-actions">
+          <a href="/ml-workspace" class="ml-link-btn">
+            <i class="fa-solid fa-flask"></i> View ML Projects
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-card-wrapper animate-slide-up" style="position: relative; animation-delay: 0.4s; width: 100%">
+      <div class="timeline-node">5</div>
+      <div class="journey-card">
+        <div class="card-header">
+          <div class="week-badge">Week 5</div>
+          <h2>Generative AI & API Engineering</h2>
+        </div>
+        <p class="card-intro">
+          Integrating large language models directly into application runtimes
+          using advanced API patterns.
+        </p>
+        <div class="card-details-grid">
+          <div class="detail-section">
+            <h3>Core Concepts</h3>
+            <ul>
+              <li>
+                <strong>Google Gemini API:</strong> Setting up secure keys,
+                generating structured JSON payloads, and streaming tokens.
+              </li>
+              <li>
+                <strong>System Instructions:</strong> Designing system prompts
+                to direct specific responses.
+              </li>
+              <li>
+                <strong>Model Fine-Tuning Foundations:</strong> Exploring
+                transfer learning methods to specialize pre-trained networks.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="journey-card-actions">
+          <a href="{{ url_for('static', filename='notebooks_html/geminiprompting.html') }}" target="_blank"
+            rel="noopener noreferrer" class="ml-link-btn">
+            <i class="fa-solid fa-robot"></i> View Gemini Prompting Notebook
+          </a>
+          <a href="{{ url_for('static', filename='notebooks_html/geminiprompting.html') }}"
+            download="geminiprompting.html" class="ml-link-btn">
+            <i class="fa-solid fa-download"></i> Download Notebook
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-card-wrapper animate-slide-up" style="position: relative; animation-delay: 0.5s; width: 100%">
+      <div class="timeline-node complete">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <div class="journey-card">
+        <div class="card-header">
+          <div class="week-badge">Week 6</div>
+          <h2>AI Capstone Project Deployment</h2>
+          <i class="fa-solid fa-rocket" style="font-size: 1.1rem; color: var(--primary-accent); margin-left: auto;"></i>
+        </div>
+        <p class="card-intro">
+          Unifying all six weeks of knowledge into a production-ready, fully
+          deployed AI application.
+        </p>
+        <div class="card-details-grid">
+          <div class="detail-section">
+            <h3>Core Concepts</h3>
+            <ul>
+              <li>
+                <strong>Full-Stack Integration:</strong> Wiring Flask servers to
+                active scrapers, API endpoints, and database backends.
+              </li>
+              <li>
+                <strong>Polished User Interfaces:</strong> Styling with custom
+                dark-mode CSS variables, loading states, and clean tables.
+              </li>
+              <li>
+                <strong>Version Control:</strong> Successfully pushing and
+                tracking all components on GitHub!
+              </li>
+            </ul>
+          </div>
+          <a href="https://faq-flow-gztg.onrender.com/" target="_blank"
+            class="clickable-blog-box"
+            style="display: block; margin-top: 1.5rem; background: rgba(80, 89, 103, 0.04); border: 1px dashed rgba(80, 89, 103, 0.25); border-radius: 12px; padding: 1.25rem; text-decoration: none; transition: all 0.3s ease;">
+            <h4
+              style="margin: 0 0 0.5rem; font-size: 1rem; color: var(--primary-accent); display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s ease;">
+              <i class="fa-solid fa-brain"></i> <span class="box-title">FAQFlow AI</span>
+            </h4>
+            <p
+              style="margin: 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; transition: color 0.3s ease;">
+              FAQFlow AI is an AI-powered FAQ management and chatbot platform that enables businesses to upload their
+              knowledge base and provide instant, accurate responses to customer queries. It uses Flask, SQLite, TF-IDF,
+              and Google Gemini AI to deliver intelligent answers and offers an embeddable chatbot widget for seamless
+              website integration.
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-back-link">
+    <a href="/education" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Education & Experience</a>
+  </div>
+</section>
+{% endblock %}
